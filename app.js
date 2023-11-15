@@ -114,7 +114,7 @@ function compare(aralik) {
 
 guessInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
-    event.preventDefault(); // Prevent the form from submitting
-    guessBtn.click(); // Trigger the "click" event on the guessBtn button
+    event.preventDefault(); 
+    guessBtn.click();
   }
 });
