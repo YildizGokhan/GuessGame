@@ -10,6 +10,7 @@ const body = document.querySelector(".body");
 let live = document.querySelector(".live");
 const correctSound = document.getElementById("correctSound");
 const wrongSound = document.getElementById("wrongSound");
+const guessHistory = [];
 let liveValue = parseInt(live.value);
 let hak = 10;
 let x = localStorage.getItem("mytime", 0);
@@ -80,14 +81,18 @@ function compare(aralik) {
   if (hak > 1 && hak <= 10) {
     if (isNaN(userGuess) || userGuess < 1 || userGuess > aralik) {
       explanation.textContent = `Please enter a valid number between 1 - ${aralik}`;
+    } else if (guessHistory.includes(userGuess)) {
+      explanation.textContent = "You've already guessed that number. Try a different one.";
     } else if (userGuess < randomNumber) {
       explanation.textContent = "Please increase the number.";
       hak -= 1;
       live.textContent = hak;
+      guessHistory.push(userGuess);
     } else if (userGuess > randomNumber) {
       explanation.textContent = "Please decrease the number.";
       hak -= 1;
       live.textContent = hak;
+      guessHistory.push(userGuess);
     } else {
       explanation.textContent = "Congratulations, you guessed it!";
       score.textContent = hak;
